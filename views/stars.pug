@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to Rahul's #{title}
+  p Our table is #{query.rows} x #{query.cols}
+  - 
+    var rows =  Number(query.rows)
+    var cols =  Number(query.cols)
+  -  
+    if(Number.isInteger(rows) && Number.isInteger(cols)){
+  - if(rows<1 || rows > 4 || cols<1 || cols>4){
+  p Invalid
+  -  }else{
+  table
+    - for(let i =0; i<rows; i++){
+      tr 
+    - for(let j=0;j<cols;j++){
+          td #{i+j}
+    - }
+    - }
+  - }  
+  - }

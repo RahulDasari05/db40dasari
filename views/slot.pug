@@ -1,0 +1,12 @@
+extends layout
+block content
+  h1= title
+  p Welcome to Rahul's #{title} Machine
+  - 
+    image_names = ["\\images\\flower1.jpg","\\images\\flower2.jpg","\\images\\flower3.jpg","\\images\\flower4.jpg","\\images\\flower5.jpg"]
+  - 
+    for(let i=0;i<3;i++){
+    var j = Math.floor(Math.random()*5)
+  img(src=image_names[j], alt="", width=300, height=300)
+  -  }
+    

@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1 Search Results in account
+  div(class="container-fluid", id="main")
+      div(class="row", id="r")
+        -
+          var list = ["Uno", "Dos", "Tres", "Cuatro", "Cinco", "Seis"];
+        each item in list
+          div(class="col-sm-2")
+            li= item
+
+
+          
+
+
+            
