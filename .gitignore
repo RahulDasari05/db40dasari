@@ -1,11 +1,11 @@
 # OS X
-.env
+*.env
 .DS_Store*
 Icon?
 ._*
 
 # Windows
-.env
+*.env
 Thumbs.db
 ehthumbs.db
 Desktop.ini
@@ -20,7 +20,7 @@ node_modules
 package-lock.json
 *.log
 *.gz
-.env
+*.env
 
 
 # Coveralls

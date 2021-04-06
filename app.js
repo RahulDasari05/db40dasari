@@ -16,6 +16,31 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connectionerror:'));
 db.once("open", function(){console.log("Connection to DB succeeded");});
 
+
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var accountRouter = require('./routes/account');
+var starsRouter = require('./routes/stars');
+var slotRouter = require('./routes/slot');
+var Account = require('./models/account');
+var resourcesRouter = require('./routes/resources');
+var app = express();
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+//app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/account', accountRouter);
+app.use('/stars', starsRouter);
+app.use('/slot', slotRouter);
+app.use('/',resourcesRouter);
 // We can seed the collection if needed on server start
 async function recreateDB(){
   // Delete everything
@@ -43,30 +68,6 @@ async function recreateDB(){
  }
  let reseed = true;
  if (reseed) { recreateDB();}
-
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var accountRouter = require('./routes/account');
-var starsRouter = require('./routes/stars');
-var slotRouter = require('./routes/slot');
-var account = require('/models/account.js');
-var app = express();
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/account', accountRouter);
-app.use('/stars', starsRouter);
-app.use('/slot', slotRouter);
 
 
 // catch 404 and forward to error handler
