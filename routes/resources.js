@@ -18,7 +18,19 @@ router.get('/resource/accounts/:id', account_controller.account_detail);
 // GET request for list of all Account items.
 router.get('/resource/accounts', account_controller.account_list);
 
-/* GET detail costume page */
-router.get('/detail', account_controlers.account_view_one_Page);
+/* GET detail account page */
+router.get('/resource/detail/:id', account_controller.account_view_one_Page);
+
+/* GET create account page */
+router.get('/create', account_controller.account_create_Page);
+
+/* GET create update page */
+router.get('/update/:id', account_controller.account_update_Page);
+
+/* GET create account page */
+router.get('/delete/:id', account_controller.account_delete_Page);
+
+
+
 
 module.exports = router;

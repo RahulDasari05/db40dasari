@@ -3,14 +3,10 @@ extends layout
 block content
   h1= title
 
-  - let accountid = toShow._id
-  - let accounttype = toShow.accounttype
-  - let accountcost = toShow.cost
-  - let accountsize = toShow.size
+  - let accountname = toShow.name
+  - let accountbalance = toShow.balance
+  - let bank_account = toShow.id
   div
-    div.row
-      div(class='accountAttr mr-3') account ID is:
-      div #{accountid}
     div.row
       div(class='accountAttr mr-3') account Name is:
       div #{accountname}
@@ -18,5 +14,5 @@ block content
       div(class='accountAttr mr-3') account balance is:
       div #{accountbalance}
     div.row
-      div(class='accountAttr mr-3') account id is:
-      div #{accountid}
+      div(class='accountAttr mr-3') account accountNo is:
+      div #{bank_account}

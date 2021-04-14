@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  h1= title
+
+  - let accountid = toShow._id
+  - let accountname = toShow.name
+  - let accountbalance = toShow.balance
+  - let account_number = toShow.id
+  
+
+  div.row(class='mb-2')
+    div.mr-1 ID tobe deleted is
+    div #{accountid}
+  - let actionid = "/resource/accounts/" + accountid
+
+    
+   a.btn.btn-warning(id='accountForm', onclick='something()') Delete
+   a.btn.btn-warning(href="/resource/accounts") Cancel
+
+  script.
+     var something = function()  {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'DELETE',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("DELETE succeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("DELETE failed " + error )
+      });
+    });

@@ -24,6 +24,7 @@ var starsRouter = require('./routes/stars');
 var slotRouter = require('./routes/slot');
 var Account = require('./models/account');
 var resourcesRouter = require('./routes/resources');
+
 var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
