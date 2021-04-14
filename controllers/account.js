@@ -35,9 +35,6 @@ exports.account_detail = async function(req, res) {
         res.send(`{"error": document for id ${req.params.id} not found`);
     }
 };
-
-
-
 // Handle Account create on POST.
 exports.account_create_post = async function(req, res) {
     console.log(req.body)
@@ -54,7 +51,7 @@ exports.account_create_post = async function(req, res) {
     }
 };
 // Handle Account delete form on DELETE.
-exports.account_delete = function(req, res) {
+exports.account_delete = async function(req, res) {
     console.log("delete "  + req.params.id)
     try {
         result = await Account.findByIdAndDelete( req.params.id)
@@ -74,8 +71,7 @@ exports.account_update_put = async function(req, res) {
         if(req.body.id) toUpdate.id = req.body.id;
         if(req.body.balance) toUpdate.balance = req.body.balance;
         if(req.body.name) toUpdate.name = req.body.name;
-        let result = await toUpdate.save();
-        
+        let result = await toUpdate.save();      
         console.log("Sucess " + result)
         res.send(result)
     } catch (err) {

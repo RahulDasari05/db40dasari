@@ -133,48 +133,75 @@ exports.account_create_post = function _callee4(req, res) {
 }; // Handle Account delete form on DELETE.
 
 
-exports.account_delete = function (req, res) {
-  res.send('NOT IMPLEMENTED: Account delete DELETE ' + req.params.id);
-}; //Handle Account update form on PUT.
-
-
-exports.account_update_put = function _callee5(req, res) {
-  var toUpdate, _result2;
-
+exports.account_delete = function _callee5(req, res) {
   return regeneratorRuntime.async(function _callee5$(_context5) {
     while (1) {
       switch (_context5.prev = _context5.next) {
         case 0:
-          console.log("update on id ".concat(req.params.id, " with body ").concat(JSON.stringify(req.body)));
+          console.log("delete " + req.params.id);
           _context5.prev = 1;
           _context5.next = 4;
+          return regeneratorRuntime.awrap(Account.findByIdAndDelete(req.params.id));
+
+        case 4:
+          result = _context5.sent;
+          console.log("Removed " + result);
+          res.send(result);
+          _context5.next = 13;
+          break;
+
+        case 9:
+          _context5.prev = 9;
+          _context5.t0 = _context5["catch"](1);
+          res.status(500);
+          res.send("{\"error\": Error deleting ".concat(_context5.t0, "}"));
+
+        case 13:
+        case "end":
+          return _context5.stop();
+      }
+    }
+  }, null, null, [[1, 9]]);
+}; //Handle Account update form on PUT.
+
+
+exports.account_update_put = function _callee6(req, res) {
+  var toUpdate, _result2;
+
+  return regeneratorRuntime.async(function _callee6$(_context6) {
+    while (1) {
+      switch (_context6.prev = _context6.next) {
+        case 0:
+          console.log("update on id ".concat(req.params.id, " with body ").concat(JSON.stringify(req.body)));
+          _context6.prev = 1;
+          _context6.next = 4;
           return regeneratorRuntime.awrap(Account.findById(req.params.id));
 
         case 4:
-          toUpdate = _context5.sent;
+          toUpdate = _context6.sent;
           // Do updates of properties
           if (req.body.id) toUpdate.id = req.body.id;
           if (req.body.balance) toUpdate.balance = req.body.balance;
           if (req.body.name) toUpdate.name = req.body.name;
-          _context5.next = 10;
+          _context6.next = 10;
           return regeneratorRuntime.awrap(toUpdate.save());
 
         case 10:
-          _result2 = _context5.sent;
+          _result2 = _context6.sent;
           console.log("Sucess " + _result2);
           res.send(_result2);
-          _context5.next = 19;
+          _context6.next = 19;
           break;
 
         case 15:
-          _context5.prev = 15;
-          _context5.t0 = _context5["catch"](1);
+          _context6.prev = 15;
+          _context6.t0 = _context6["catch"](1);
           res.status(500);
-          res.send("{\"error\": ".concat(_context5.t0, ": Update for id ").concat(req.params.id, " failed"));
+          res.send("{\"error\": ".concat(_context6.t0, ": Update for id ").concat(req.params.id, " failed"));
 
         case 19:
         case "end":
-          return _context5.stop();
+          return _context6.stop();
       }
     }
   }, null, null, [[1, 15]]);
