@@ -55,7 +55,15 @@ exports.account_create_post = async function(req, res) {
 };
 // Handle Account delete form on DELETE.
 exports.account_delete = function(req, res) {
- res.send('NOT IMPLEMENTED: Account delete DELETE ' + req.params.id);
+    console.log("delete "  + req.params.id)
+    try {
+        result = await Account.findByIdAndDelete( req.params.id)
+        console.log("Removed " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": Error deleting ${err}}`);
+    }
 };
 //Handle Account update form on PUT.
 exports.account_update_put = async function(req, res) {
