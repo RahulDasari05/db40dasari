@@ -63,22 +63,25 @@ exports.account_view_all_Page = function _callee2(req, res) {
       }
     }
   }, null, null, [[0, 7]]);
-}; // for a specific Account.
+}; // Handle a show one view with id specified by query
 
 
-exports.account_detail = function _callee3(req, res) {
+exports.account_view_one_Page = function _callee3(req, res) {
   return regeneratorRuntime.async(function _callee3$(_context3) {
     while (1) {
       switch (_context3.prev = _context3.next) {
         case 0:
-          console.log("detail" + req.params.id);
+          console.log("single view for id " + req.query.id);
           _context3.prev = 1;
           _context3.next = 4;
-          return regeneratorRuntime.awrap(Account.findById(req.params.id));
+          return regeneratorRuntime.awrap(Account.findById(req.query.id));
 
         case 4:
           result = _context3.sent;
-          res.send(result);
+          res.render('accountdetail', {
+            title: 'Account Detail',
+            toShow: result
+          });
           _context3.next = 12;
           break;
 
@@ -86,7 +89,7 @@ exports.account_detail = function _callee3(req, res) {
           _context3.prev = 8;
           _context3.t0 = _context3["catch"](1);
           res.status(500);
-          res.send("{\"error\": document for id ".concat(req.params.id, " not found"));
+          res.send("{'error': '".concat(_context3.t0, "'}"));
 
         case 12:
         case "end":
@@ -94,114 +97,145 @@ exports.account_detail = function _callee3(req, res) {
       }
     }
   }, null, null, [[1, 8]]);
-}; // Handle Account create on POST.
+}; // for a specific Account.
 
 
-exports.account_create_post = function _callee4(req, res) {
-  var document, _result;
-
+exports.account_detail = function _callee4(req, res) {
   return regeneratorRuntime.async(function _callee4$(_context4) {
     while (1) {
       switch (_context4.prev = _context4.next) {
+        case 0:
+          console.log("detail" + req.params.id);
+          _context4.prev = 1;
+          _context4.next = 4;
+          return regeneratorRuntime.awrap(Account.findById(req.params.id));
+
+        case 4:
+          result = _context4.sent;
+          res.send(result);
+          _context4.next = 12;
+          break;
+
+        case 8:
+          _context4.prev = 8;
+          _context4.t0 = _context4["catch"](1);
+          res.status(500);
+          res.send("{\"error\": document for id ".concat(req.params.id, " not found"));
+
+        case 12:
+        case "end":
+          return _context4.stop();
+      }
+    }
+  }, null, null, [[1, 8]]);
+}; // Handle Account create on POST.
+
+
+exports.account_create_post = function _callee5(req, res) {
+  var document, _result;
+
+  return regeneratorRuntime.async(function _callee5$(_context5) {
+    while (1) {
+      switch (_context5.prev = _context5.next) {
         case 0:
           console.log(req.body);
           document = new Account();
           document.id = req.body.id;
           document.balance = req.body.balance;
           document.name = req.body.name;
-          _context4.prev = 5;
-          _context4.next = 8;
+          _context5.prev = 5;
+          _context5.next = 8;
           return regeneratorRuntime.awrap(document.save());
 
         case 8:
-          _result = _context4.sent;
+          _result = _context5.sent;
           res.send(_result);
-          _context4.next = 15;
+          _context5.next = 15;
           break;
 
         case 12:
-          _context4.prev = 12;
-          _context4.t0 = _context4["catch"](5);
-          res.error(500, "{\"error\": ".concat(_context4.t0, "}"));
+          _context5.prev = 12;
+          _context5.t0 = _context5["catch"](5);
+          res.error(500, "{\"error\": ".concat(_context5.t0, "}"));
 
         case 15:
         case "end":
-          return _context4.stop();
+          return _context5.stop();
       }
     }
   }, null, null, [[5, 12]]);
 }; // Handle Account delete form on DELETE.
 
 
-exports.account_delete = function _callee5(req, res) {
-  return regeneratorRuntime.async(function _callee5$(_context5) {
+exports.account_delete = function _callee6(req, res) {
+  return regeneratorRuntime.async(function _callee6$(_context6) {
     while (1) {
-      switch (_context5.prev = _context5.next) {
+      switch (_context6.prev = _context6.next) {
         case 0:
           console.log("delete " + req.params.id);
-          _context5.prev = 1;
-          _context5.next = 4;
+          _context6.prev = 1;
+          _context6.next = 4;
           return regeneratorRuntime.awrap(Account.findByIdAndDelete(req.params.id));
 
         case 4:
-          result = _context5.sent;
+          result = _context6.sent;
           console.log("Removed " + result);
           res.send(result);
-          _context5.next = 13;
+          _context6.next = 13;
           break;
 
         case 9:
-          _context5.prev = 9;
-          _context5.t0 = _context5["catch"](1);
+          _context6.prev = 9;
+          _context6.t0 = _context6["catch"](1);
           res.status(500);
-          res.send("{\"error\": Error deleting ".concat(_context5.t0, "}"));
+          res.send("{\"error\": Error deleting ".concat(_context6.t0, "}"));
 
         case 13:
         case "end":
-          return _context5.stop();
+          return _context6.stop();
       }
     }
   }, null, null, [[1, 9]]);
 }; //Handle Account update form on PUT.
 
 
-exports.account_update_put = function _callee6(req, res) {
+exports.account_update_put = function _callee7(req, res) {
   var toUpdate, _result2;
 
-  return regeneratorRuntime.async(function _callee6$(_context6) {
+  return regeneratorRuntime.async(function _callee7$(_context7) {
     while (1) {
-      switch (_context6.prev = _context6.next) {
+      switch (_context7.prev = _context7.next) {
         case 0:
           console.log("update on id ".concat(req.params.id, " with body ").concat(JSON.stringify(req.body)));
-          _context6.prev = 1;
-          _context6.next = 4;
+          _context7.prev = 1;
+          _context7.next = 4;
           return regeneratorRuntime.awrap(Account.findById(req.params.id));
 
         case 4:
-          toUpdate = _context6.sent;
+          toUpdate = _context7.sent;
           // Do updates of properties
           if (req.body.id) toUpdate.id = req.body.id;
           if (req.body.balance) toUpdate.balance = req.body.balance;
           if (req.body.name) toUpdate.name = req.body.name;
-          _context6.next = 10;
+          _context7.next = 10;
           return regeneratorRuntime.awrap(toUpdate.save());
 
         case 10:
-          _result2 = _context6.sent;
+          _result2 = _context7.sent;
           console.log("Sucess " + _result2);
           res.send(_result2);
-          _context6.next = 19;
+          _context7.next = 19;
           break;
 
         case 15:
-          _context6.prev = 15;
-          _context6.t0 = _context6["catch"](1);
+          _context7.prev = 15;
+          _context7.t0 = _context7["catch"](1);
           res.status(500);
-          res.send("{\"error\": ".concat(_context6.t0, ": Update for id ").concat(req.params.id, " failed"));
+          res.send("{\"error\": ".concat(_context7.t0, ": Update for id ").concat(req.params.id, " failed"));
 
         case 19:
         case "end":
-          return _context6.stop();
+          return _context7.stop();
       }
     }
   }, null, null, [[1, 15]]);

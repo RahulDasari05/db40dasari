@@ -17,4 +17,8 @@ router.put('/resource/accounts/:id', account_controller.account_update_put);
 router.get('/resource/accounts/:id', account_controller.account_detail);
 // GET request for list of all Account items.
 router.get('/resource/accounts', account_controller.account_list);
+
+/* GET detail costume page */
+router.get('/detail', account_controlers.account_view_one_Page);
+
 module.exports = router;

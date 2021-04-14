@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+
+  - let accountid = toShow._id
+  - let accounttype = toShow.accounttype
+  - let accountcost = toShow.cost
+  - let accountsize = toShow.size
+  div
+    div.row
+      div(class='accountAttr mr-3') account ID is:
+      div #{accountid}
+    div.row
+      div(class='accountAttr mr-3') account Name is:
+      div #{accountname}
+    div.row
+      div(class='accountAttr mr-3') account balance is:
+      div #{accountbalance}
+    div.row
+      div(class='accountAttr mr-3') account id is:
+      div #{accountid}
