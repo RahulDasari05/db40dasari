@@ -68,7 +68,7 @@ exports.account_update_Page =  async function(req, res) {
     }
     catch(err){
         res.status(500)
-        res.send(`{'error': '${err}'}`);
+        res.send(`{'line: 76 account.js error': '${err}'}`);
     }
 };
 

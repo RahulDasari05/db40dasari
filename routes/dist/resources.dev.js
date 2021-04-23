@@ -1,37 +1,40 @@
 "use strict";
 
-var express = require('express');
+var express = require("express");
 
-var router = express.Router(); // Require controller modules.
+var router = express.Router();
 
-var api_controller = require('../controllers/api');
+var passport = require('passport'); // Require controller modules.
 
-var account_controller = require('../controllers/account'); /// API ROUTE ///
+
+var api_controller = require("../controllers/api");
+
+var account_controller = require("../controllers/account"); /// API ROUTE ///
 // GET resources base.
 
 
-router.get('/resource', api_controller.api); /// Account ROUTES ///
+router.get("/", api_controller.api); /// Account ROUTES ///
 // POST request for creating a Account.
 
-router.post('/resource/accounts', account_controller.account_create_post); // DELETE request to delete Account.
+router.post("/accounts", account_controller.account_create_post); // DELETE request to delete Account.
 
-router["delete"]('/resource/accounts/:id', account_controller.account_delete); // PUT request to update Account.
+router["delete"]("/accounts/:id", account_controller.account_delete); // PUT request to update Account.
 
-router.put('/resource/accounts/:id', account_controller.account_update_put); // GET request for one Account.
+router.put("/accounts/:id", account_controller.account_update_put); // GET request for one Account.
 
-router.get('/resource/accounts/:id', account_controller.account_detail); // GET request for list of all Account items.
+router.get("/accounts/:id", account_controller.account_detail); // GET request for list of all Account items.
 
-router.get('/resource/accounts', account_controller.account_list);
+router.get("/accounts", account_controller.account_list);
 /* GET detail account page */
 
-router.get('/resource/detail/:id', account_controller.account_view_one_Page);
+router.get("/detail/:id", account_controller.account_view_one_Page);
 /* GET create account page */
 
-router.get('/create', account_controller.account_create_Page);
+router.get("/create", account_controller.account_create_Page);
 /* GET create update page */
 
-router.get('/update/:id', account_controller.account_update_Page);
+router.get('/update/:id', passport.authenticate('local', account_controller.account_update_Page));
 /* GET create account page */
 
-router.get('/delete/:id', account_controller.account_delete_Page);
+router.get("/delete/:id", account_controller.account_delete_Page);
 module.exports = router;

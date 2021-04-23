@@ -155,7 +155,7 @@ exports.account_update_Page = function _callee5(req, res) {
           _context5.prev = 9;
           _context5.t0 = _context5["catch"](1);
           res.status(500);
-          res.send("{'error': '".concat(_context5.t0, "'}"));
+          res.send("{'line: 76 account.js error': '".concat(_context5.t0, "'}"));
 
         case 13:
         case "end":

@@ -12,7 +12,7 @@ block content
   div.row(class='mb-2')
     div.mr-1 ID is
     div #{accountid}
-  - let actionid = "/resource/accounts/" + accountid
+  - let actionid = "/resources/accounts/" + accountid
   form(id='accountForm', action= actionid, method="PUT")
     div.form-group
         label.accountAttr(for='accountname') Account type

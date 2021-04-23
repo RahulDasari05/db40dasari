@@ -2,14 +2,22 @@ extends layout
 
 block content
   h1 Search Results in account
+  console.log("Started")
   div(class="container-fluid", id="main")
       div(class="row", id="r")
         -
           var list = results;
+        div(class="container-fluid")
+        div(class="row")
         each item in list
-          div(class="col-sm-2")
-            li= item.name
-
+          - let destination = "dispatch(\"/resource/update/"+item._id+"\")"
+          console.log(destination)
+          div(class="row-sm-2", class="m-1") Account #{item.id}(#{item.name}) Balance is #{item.balance} | 
+            button.btn( class="btn-primary ml-1", onclick= destination) Update
+  script.
+    function dispatch(path){
+    window.location.href=path
+    }
 
           
 

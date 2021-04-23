@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
 
-  form(id='AccountForm', action="/resource/accounts", method="POST")
+  form(id='AccountForm', action="/resources/accounts", method="POST")
     div.form-group
         label.accountAttr(for='accountname') Account Name
         input#accountname(type='text', name='accountname')
